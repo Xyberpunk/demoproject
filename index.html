@@ -2885,7 +2885,7 @@
     </script>
 
     <script>
-      window.addEventListener("DOMContentLoaded", function () {
+      function initSrmbAiDrawer() {
         document.querySelectorAll('a[href^="/"]').forEach(function (a) {
           var href = a.getAttribute("href");
           if (href === "/") {
@@ -3438,6 +3438,25 @@
             }
           }
         });
+      }
+
+      function ensureSrmbAiDrawer() {
+        if (!document.body) {
+          return;
+        }
+        initSrmbAiDrawer();
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", ensureSrmbAiDrawer);
+      } else {
+        ensureSrmbAiDrawer();
+      }
+
+      window.addEventListener("load", function () {
+        setTimeout(ensureSrmbAiDrawer, 0);
+        setTimeout(ensureSrmbAiDrawer, 300);
+        setTimeout(ensureSrmbAiDrawer, 1200);
       });
     </script>
   </body>
